@@ -1,0 +1,19 @@
+{
+  "name": "vuepress",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonliao001/vuepress.git"
+  },
+  "author": "bxliao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonliao001/vuepress/issues"
+  },
+  "homepage": "https://github.com/jasonliao001/vuepress#readme"
+}
