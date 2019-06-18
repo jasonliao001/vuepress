@@ -1,14 +1,14 @@
 ---
 home: true
-# heroImage: /hero.png
+heroImage: ./images/web.jpg
 actionText: Discovery →
-actionLink: /zh/guide
+actionLink: /Article/
 features:
-  - title: 方法
+  - title:
     details:
-  - title: 天道酬勤
+  - title:
     details:
-  - title: 目标
+  - title:
     details:
 footer: MIT Licensed | Copyright © 2019-present bxLiao
 ---
