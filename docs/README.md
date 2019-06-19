@@ -2,7 +2,7 @@
 home: true
 heroImage: ./images/web.jpg
 actionText: Discovery →
-actionLink: /Article/
+actionLink: /SiteNav/basic
 features:
   - title:
     details:
