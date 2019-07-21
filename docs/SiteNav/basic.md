@@ -1,14 +1,12 @@
 ## Js
 
 1. [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
-
 2. [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
-
 3. [Javascript-tutorial](https://zh.javascript.info/)
-
 4. [TypeScript handbook](https://zhongsp.gitbooks.io/typescript-handbook/)
-
 5. [深入浅出 typescript](https://jkchao.github.io/typescript-book-chinese/)
+6. [重新介绍 JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+7. [Es5](http://yanhaijing.com/es5/)
 
 ## Css
 
@@ -25,6 +23,8 @@
 6. [Material](https://www.material.io/)
 
 7. [Ionic](https://ionicframework.com/docs)
+
+8. [cssreference](http://cssreference.parryqiu.com/)
 
 ## Framework & Library
 

@@ -17,3 +17,5 @@
 9. [阮一峰周分享](https://www.yuque.com/ruanyf/share)
 
 10. [zaobao](https://wubaiqing.github.io/zaobao/)
+
+11. [Frontend-weekly](https://frontend-weekly.com/2019/2019-05-06.html)
