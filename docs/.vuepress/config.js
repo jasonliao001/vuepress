@@ -23,7 +23,7 @@ module.exports = {
         },
         {
           title: 'Browser',
-          children: [['/CheckList/Browser/ajax', '网络请求']]
+          children: [['/CheckList/Browser/ajax', '网络请求'], ['/CheckList/Browser/window', 'window']]
         }
       ],
       '/SiteNav/': [

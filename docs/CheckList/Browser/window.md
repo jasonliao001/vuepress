@@ -9,7 +9,7 @@
 - `window.console`：指向`console`对象，用于操作控制台。
 - `window.screen`：指向`Screen`对象，表示屏幕信息。
 
-#### Screen 对象
+## Screen 对象
 
 `Screen.orientation`：返回一个对象，表示屏幕的方向。该对象的`type`属性是一个字符串，表示屏幕的具体方向，`landscape-primary`表示横放，`landscape-secondary`表示颠倒的横放，`portrait-primary`表示竖放，`portrait-secondary`。
 
@@ -18,7 +18,7 @@ window.screen.orientation
 // { angle: 0, type: "landscape-primary", onchange: null }
 ```
 
-#### Navigator 对象
+## Navigator 对象
 
 `navigator.onLine`属性返回一个布尔值，表示用户当前在线还是离线（浏览器断线）。
 
@@ -33,7 +33,7 @@ window.addEventListener('online', function(e) { console.log('online'); });
 
 `Navigator.geolocation`属性返回一个 Geolocation 对象，包含用户地理位置的信息。注意，该 API 只有在 HTTPS 协议下可用，否则调用下面方法时会报错。调用这三个方法时，浏览器会跳出一个对话框，要求用户给予授权
 
-#### window 对象
+## window 对象
 
 `window.open`方法用于新建另一个浏览器窗口，类似于浏览器菜单的新建窗口选项。它会返回新窗口的引用，如果无法新建窗口，则返回`null`。
 
@@ -132,7 +132,9 @@ for (var i = 0; i < window.localStorage.length; i++) {
 }
 ```
 
-#### 同源策略
+## 同源策略
+
+**表单在历史上一直可以跨域发出请求。**
 
 如果非同源，共有三种行为受到限制
 
@@ -265,4 +267,9 @@ Origin: http://example.com
 正是因为有了Origin这个字段，所以 WebSocket 才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。如果该域名在白名单内，服务器就会做出如下回应。
 ```
 
-CORS 是跨源资源分享（Cross-Origin Resource Sharing）的缩写。它是 W3C 标准，属于跨源 AJAX 请求的根本解决方法
+**CORS 是跨源资源分享（Cross-Origin Resource Sharing）的缩写。它是 W3C 标准，属于跨源 AJAX 请求的根本解决方法**
+
+> CORS 需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能。
+>
+> 整个 CORS 通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS 通信与普通的 AJAX 通信没有差别，代码完全一样。浏览器一旦发现 AJAX 请求跨域，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感知。因此，实现 CORS 通信的关键是服务器。只要服务器实现了 CORS 接口，就可以跨域通信。
+
