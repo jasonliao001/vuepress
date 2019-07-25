@@ -356,3 +356,16 @@ Access-Control-Max-Age: 1728000 //该字段可选，用来指定本次预检请�
 ##### 浏览器的正常请求和回应
 
 一旦服务器通过了“预检”请求，以后每次浏览器正常的 CORS 请求，就都跟简单请求一样，会有一个`Origin`头信息字段。服务器的回应，也都会有一个`Access-Control-Allow-Origin`头信息字段。
+
+下面是“预检”请求之后，浏览器的正常 CORS 请求。
+
+```javascript
+PUT /cors HTTP/1.1
+Origin: http://api.bob.com
+Host: api.alice.com
+X-Custom-Header: value
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+```
+
