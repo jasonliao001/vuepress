@@ -90,6 +90,170 @@ DOMComb(document.body, console.log)
 
 **document.scrollingElement**
 
+`document.scrollingElement`属性返回文档的滚动元素。也就是说，当文档整体滚动时，到底是哪个元素在滚动。
+
+标准模式下，这个属性返回的文档的根元素`document.documentElement`（即`<html>`）。兼容（quirk）模式下，返回的是`<body>`元素，如果该元素不存在，返回`null`。
+
 **document.activeElement**
 
 **document.fullscreenElement**
+
+`document.fullscreenElement`属性返回当前以全屏状态展示的 DOM 元素。如果不是全屏状态，该属性返回`null`。
+
+#### 文档静态信息属性
+
+**document.domain**
+
+`ocument.domain`属性返回当前文档的域名，不包含协议和接口。比如，网页的网址是`http://www.example.com:80/hello.html`，那么`domain`属性就等于`www.example.com`。如果无法获取域名，该属性返回`null`。
+
+**document.referrer**
+
+`document.referrer`属性返回一个字符串，表示当前文档的访问者来自哪里。
+
+**document.readyState**
+
+- `loading`：加载 HTML 代码阶段（尚未完成解析）
+- `interactive`：加载外部资源阶段
+- `complete`：加载完成
+
+1. 浏览器开始解析 HTML 文档，`document.readyState`属性等于`loading`。
+2. 浏览器遇到 HTML 文档中的`<script>`元素，并且没有`async`或`defer`属性，就暂停解析，开始执行脚本，这时`document.readyState`属性还是等于`loading`。
+3. HTML 文档解析完成，`document.readyState`属性变成`interactive`。
+4. 浏览器等待图片、样式表、字体文件等外部资源加载完成，一旦全部加载完成，`document.readyState`属性变成`complete`。
+
+```javascript
+// 基本检查
+if (document.readyState === 'complete') {
+  // ...
+}
+// 轮询检查
+var interval = setInterval(function() {
+  if (document.readyState === 'complete') {
+    clearInterval(interval);
+    // ...
+  }
+}, 100);
+```
+
+#### document.createDocumentFragment()
+
+> `DocumentFragment`是一个存在于内存的 DOM 片段，不属于当前文档，常常用来生成一段较复杂的 DOM 结构，然后再插入当前文档。这样做的好处在于，因为`DocumentFragment`不属于当前文档，对它的任何改动，都不会引发网页的重新渲染，比直接修改当前文档的 DOM 有更好的性能表现。
+
+```javascript
+var docfrag = document.createDocumentFragment();
+
+[1, 2, 3, 4].forEach(function (e) {
+  var li = document.createElement('li');
+  li.textContent = e;
+  docfrag.appendChild(li);
+});
+
+var element  = document.getElementById('ul');
+element.appendChild(docfrag);
+```
+
+#### document.createEvent()
+
+`document.createEvent`方法生成一个事件对象（`Event`实例），该对象可以被`element.dispatchEvent`方法使用，触发指定事件。
+
+```javascript
+var event = document.createEvent('Event');
+event.initEvent('build', true, true);
+document.addEventListener('build', function (e) {
+  console.log(e.type); // "build"
+}, false);
+document.dispatchEvent(event);
+```
+
+#### document.adoptNode()，document.importNode()
+
+`document.adoptNode`方法将某个节点及其子节点，从原来所在的文档或`DocumentFragment`里面移除，归属当前`document`对象，返回插入后的新节点。插入的节点对象的`ownerDocument`属性，会变成当前的`document`对象，而`parentNode`属性是`null`。
+
+#### document.createNodeIterator()
+
+`document.createNodeIterator`方法返回一个子节点遍历器。
+
+#### document.createTreeWalker()
+
+`document.createTreeWalker`方法返回一个 DOM 的子树遍历器。它与`document.createNodeIterator`方法基本是类似的，区别在于它返回的是`TreeWalker`实例，后者返回的是`NodeIterator`实例。另外，它的第一个节点不是根节点。
+
+`document.createTreeWalker`方法的第一个参数是所要遍历的根节点，第二个参数指定所要遍历的节点类型（与`document.createNodeIterator`方法的第二个参数相同）。
+
+## Element对象
+
+**Element.draggable**
+
+`Element.draggable`属性返回一个布尔值，表示当前元素是否可拖动。该属性可读写。
+
+**Element.tabIndex**
+
+`Element.tabIndex`属性返回一个整数，表示当前元素在 Tab 键遍历时的顺序。该属性可读写。
+
+`tabIndex`属性值如果是负值（通常是`-1`），则 Tab 键不会遍历到该元素。如果是正整数，则按照顺序，从小到大遍历。如果两个元素的`tabIndex`属性的正整数值相同，则按照出现的顺序遍历。遍历完所有`tabIndex`为正整数的元素以后，再遍历所有`tabIndex`等于`0`、或者属性值是非法值、或者没有`tabIndex`属性的元素，顺序为它们在网页中出现的顺序。
+
+**Element.title**
+
+`Element.title`属性用来读写当前元素的 HTML 属性`title`。该属性通常用来指定，鼠标悬浮时弹出的文字提示框。
+
+**Element.hidden**
+
+`Element.hidden`属性返回一个布尔值，表示当前元素的`hidden`属性，用来控制当前元素是否可见。该属性可读写。
+
+**Element.contentEditable，Element.isContentEditable**
+
+HTML 元素可以设置`contentEditable`属性，使得元素的内容可以编辑。
+
+##### Element.dataset
+
+网页元素可以自定义`data-`属性，用来添加数据。
+
+HTML 代码中，`data-`属性的属性名，只能包含英文字母、数字、连词线（`-`）、点（`.`）、冒号（`:`）和下划线（`_`）。它们转成 JavaScript 对应的`dataset`属性名，规则如下
+
+- 开头的`data-`会省略。
+- 如果连词线后面跟了一个英文字母，那么连词线会取消，该字母变成大写。
+- 其他字符不变。
+
+##### Element.scrollIntoView()
+
+`Element.scrollIntoView`方法滚动当前元素，进入浏览器的可见区域，类似于设置`window.location.hash`的效果。
+
+##### Element.getBoundingClientRect()
+
+`Element.getBoundingClientRect`方法返回一个对象，提供当前元素节点的大小、位置等信息，基本上就是 CSS 盒状模型的所有信息。
+
+- `x`：元素左上角相对于视口的横坐标
+- `y`：元素左上角相对于视口的纵坐标
+- `height`：元素高度
+- `width`：元素宽度
+- `left`：元素左上角相对于视口的横坐标，与`x`属性相等
+- `right`：元素右边界相对于视口的横坐标（等于`x + width`）
+- `top`：元素顶部相对于视口的纵坐标，与`y`属性相等
+- `bottom`：元素底部相对于视口的纵坐标（等于`y + height`）
+
+##### Element.insertAdjacentElement()
+
+`Element.insertAdjacentElement`方法在相对于当前元素的指定位置，插入一个新的节点。该方法返回被插入的节点，如果插入失败，返回`null`。
+
+```
+element.insertAdjacentElement(position, element);
+```
+
+- `beforebegin`：当前元素之前
+- `afterbegin`：当前元素内部的第一个子节点前面
+- `beforeend`：当前元素内部的最后一个子节点后面
+- `afterend`：当前元素之后
+
+注意，`beforebegin`和`afterend`这两个值，只在当前节点有父节点时才会生效。如果当前节点是由脚本创建的，没有父节点，那么插入会失败。
+
+##### Element.insertAdjacentHTML()，Element.insertAdjacentText()
+
+```javascript
+var d1 = document.getElementById('one');
+d1.insertAdjacentHTML('afterend', '<div id="two">two</div>');
+```
+
+该方法只是在现有的 DOM 结构里面插入节点，这使得它的执行速度比`innerHTML`方法快得多。
+
+注意，该方法不会转义 HTML 字符串，这导致它不能用来插入用户输入的内容，否则会有安全风险。
+
+`Element.insertAdjacentText`方法在相对于当前节点的指定位置，插入一个文本节点，用法与`Element.insertAdjacentHTML`方法完全一致。
