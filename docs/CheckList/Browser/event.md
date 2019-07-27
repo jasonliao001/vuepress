@@ -296,3 +296,83 @@ new TouchEvent(type, options)
 pageshow 事件在页面加载时触发，包括第一次加载和从缓存加载两种情况。如果要指定页面每次加载（不管是不是从浏览器缓存）时都运行的代码，可以放在这个事件的监听函数。
 
 第一次加载时，它的触发顺序排在`load`事件后面。从缓存加载时，`load`事件不会触发，因为网页在缓存中的样子通常是`load`事件的监听函数运行后的样子，所以不必重复执行。同理，如果是从缓存中加载页面，网页内初始化的 JavaScript 脚本（比如 DOMContentLoaded 事件的监听函数）也不会执行。
+
+pageshow 事件有一个`persisted`属性，返回一个布尔值。页面第一次加载时，这个属性是`false`；当页面从缓存加载时，这个属性是`true`。
+
+```javascript
+window.addEventListener('pageshow', function(event){
+  if (event.persisted) {
+    // ...
+  }
+});
+```
+
+#### popstate 事件
+
+`popstate`事件在浏览器的`history`对象的当前记录发生显式切换时触发。注意，调用`history.pushState()`或`history.replaceState()`，并不会触发`popstate`事件。该事件只在用户在`history`记录之间显式切换时触发，比如鼠标点击“后退/前进”按钮，或者在脚本中调用`history.back()`、`history.forward()`、`history.go()`时触发。
+
+#### hashchange 事件
+
+`hashchange`事件在 URL 的 hash 部分（即`#`号后面的部分，包括`#`号）发生变化时触发。该事件一般在`window`对象上监听
+
+`hashchange`的事件实例具有两个特有属性：`oldURL`属性和`newURL`属性，分别表示变化前后的完整 URL。
+
+### 网页状态事件
+
+#### DOMContentLoaded 事件
+
+网页下载并解析完成以后，浏览器就会在`document`对象上触发 DOMContentLoaded 事件。这时，仅仅完成了网页的解析（整张页面的 DOM 生成了），所有外部资源（样式表、脚本、iframe 等等）可能还没有下载结束。也就是说，这个事件比`load`事件，发生时间早得多。
+
+#### readystatechange 事件
+
+`readystatechange`事件当 Document 对象和 XMLHttpRequest 对象的`readyState`属性发生变化时触发。`document.readyState`有三个可能的值：`loading`（网页正在加载）、`interactive`（网页已经解析完成，但是外部资源仍然处在加载状态）和`complete`（网页和所有外部资源已经结束加载，`load`事件即将触发）。
+
+```javascript
+document.onreadystatechange = function () {
+  if (document.readyState === 'interactive') {
+    // ...
+  }
+}
+```
+
+### 窗口事件
+
+### resize 事件
+
+`resize`事件在改变浏览器窗口大小时触发，主要发生在`window`对象上面。
+
+```javascript
+var resizeMethod = function () {
+  if (document.body.clientWidth < 768) {
+    console.log('移动设备的视口');
+  }
+};
+
+window.addEventListener('resize', resizeMethod, true)
+```
+
+### fullscreenchange 事件，fullscreenerror 事件
+
+`fullscreenchange`事件在进入或推出全屏状态时触发，该事件发生在`document`对象上面。
+
+```
+document.addEventListener('fullscreenchange', function (event) {
+  console.log(document.fullscreenElement);
+});
+```
+
+## 剪贴板事件
+
+- `cut`：将选中的内容从文档中移除，加入剪贴板时触发。
+- `copy`：进行复制动作时触发。
+- `paste`：剪贴板内容粘贴到文档后触发。
+
+## 焦点事件
+
+- `focus`：元素节点获得焦点后触发，该事件不会冒泡。
+- `blur`：元素节点失去焦点后触发，该事件不会冒泡。
+- `focusin`：元素节点将要获得焦点时触发，发生在`focus`事件之前。该事件会冒泡。
+- `focusout`：元素节点将要失去焦点时触发，发生在`blur`事件之前。该事件会冒泡。
+
+**由于`focus`和`blur`事件不会冒泡，只能在捕获阶段触发，所以`addEventListener`方法的第三个参数需要设为`true`。**
+
