@@ -14,16 +14,16 @@ module.exports = {
           children: [['/CheckList/Javascript/grammar', '语法'], ['/CheckList/Javascript/object', '标准库']]
         },
         {
+          title: 'Browser',
+          children: [['/CheckList/Browser/ajax', '网络请求'], ['/CheckList/Browser/window', 'Window'], ['/CheckList/Browser/dom', 'Dom'], ['/CheckList/Browser/event', 'Event'], ['/CheckList/Browser/other', '其他']]
+        },
+        {
           title: 'Algorithm',
           children: [['/CheckList/Algorithm/DataStruct', '数据结构'], ['/CheckList/Algorithm/Algorithm', '算法']]
         },
         {
           title: 'Framework',
           children: [['/CheckList/Framework/Vue/Vue', 'Vue'], ['/CheckList/Framework/React/React', 'React']]
-        },
-        {
-          title: 'Browser',
-          children: [['/CheckList/Browser/ajax', '网络请求'], ['/CheckList/Browser/window', 'window'], ['/CheckList/Browser/dom', 'dom']]
         }
       ],
       '/SiteNav/': [

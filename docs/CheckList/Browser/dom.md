@@ -257,3 +257,90 @@ d1.insertAdjacentHTML('afterend', '<div id="two">two</div>');
 注意，该方法不会转义 HTML 字符串，这导致它不能用来插入用户输入的内容，否则会有安全风险。
 
 `Element.insertAdjacentText`方法在相对于当前节点的指定位置，插入一个文本节点，用法与`Element.insertAdjacentHTML`方法完全一致。
+
+## DocumentFragment节点
+
+`DocumentFragment`节点代表一个文档的片段，本身就是一个完整的 DOM 树形结构。它没有父节点，`parentNode`返回`null`，但是可以插入任意数量的子节点。它不属于当前文档，操作`DocumentFragment`节点，要比直接操作 DOM 树快得多。
+
+```javascript
+var docFrag = document.createDocumentFragment();
+// 等同于
+var docFrag = new DocumentFragment();
+
+var li = document.createElement('li');
+li.textContent = 'Hello World';
+docFrag.appendChild(li);
+
+document.querySelector('ul').appendChild(docFrag);
+```
+
+`DocumentFragment`节点对象没有自己的属性和方法，全部继承自`Node`节点和`ParentNode`接口。也就是说，`DocumentFragment`节点比`Node`节点多出以下四个属性。
+
+- `children`：返回一个动态的`HTMLCollection`集合对象，包括当前`DocumentFragment`对象的所有子元素节点。
+- `firstElementChild`：返回当前`DocumentFragment`对象的第一个子元素节点，如果没有则返回`null`。
+- `lastElementChild`：返回当前`DocumentFragment`对象的最后一个子元素节点，如果没有则返回`null`。
+- `childElementCount`：返回当前`DocumentFragment`对象的所有子元素数量。
+
+## Image对象
+
+#### 特性相关的属性
+
+**HTMLImageElement.srcset，HTMLImageElement.sizes**
+
+`HTMLImageElement.srcset`属性和`HTMLImageElement.sizes`属性，分别用于读写`<img>`元素的`srcset`属性和`sizes`属性。它们用于`<img>`元素的响应式加载。`srcset`属性可以单独使用，但是`sizes`属性必须与`srcset`属性同时使用。
+
+```javascript
+// HTML 代码如下
+// <img srcset="example-320w.jpg 320w,
+//              example-480w.jpg 480w,
+//              example-800w.jpg 800w"
+//      sizes="(max-width: 320px) 280px,
+//             (max-width: 480px) 440px,
+//             800px"
+//      id="myImg"
+//      src="example-800w.jpg">
+var img = document.getElementById('myImg');
+img.srcset
+// "example-320w.jpg 320w,
+//  example-480w.jpg 480w,
+//  example-800w.jpg 800w"
+
+img.sizes
+// "(max-width: 320px) 280px,
+//  (max-width: 480px) 440px,
+//  800px"
+```
+
+#### HTMLImageElement.naturalWidth，HTMLImageElement.naturalHeight
+
+`HTMLImageElement.naturalWidth`属性表示图像的实际宽度（单位像素），`HTMLImageElement.naturalHeight`属性表示实际高度。这两个属性返回的都是整数。
+
+如果图像还没有指定或不可得，这两个属性都等于`0`。
+
+#### HTMLImageElement.crossOrigin
+
+`HTMLImageElement.crossOrigin`属性用于读写`<img>`元素的`crossorigin`属性，表示跨域设置。
+
+- `anonymous`：跨域请求不要求用户身份（credentials），这是默认值。
+- `use-credentials`：跨域请求要求用户身份。
+
+```javascript
+// HTML 代码如下
+// <img crossorigin="anonymous" id="myImg" src="pic.jpg">
+var img = document.getElementById('img');
+img.crossOrigin // "anonymous"
+```
+
+#### HTMLImageElement.referrerPolicy
+
+`HTMLImageElement.referrerPolicy`用来读写`<img>`元素的 HTML 属性`referrerpolicy`，表示请求图像资源时，如何处理 HTTP 请求的`referrer`字段
+
+- `no-referrer`：不带有`referrer`字段。
+- `no-referrer-when-downgrade`：如果请求的地址不是 HTTPS 协议，就不带有`referrer`字段，这是默认值。
+- `origin`：`referrer`字段是当前网页的地址，包含协议、域名和端口。
+- `origin-when-cross-origin`：如果请求的地址与当前网页是同源关系，那么`referrer`字段将带有完整路径，否则将只包含协议、域名和端口。
+- `unsafe-url`：`referrer`字段包含当前网页的地址，除了协议、域名和端口以外，还包括路径。这个设置是不安全的，因为会泄漏路径信息。
+
+#### HTMLImageElement.x，HTMLImageElement.y
+
+`HTMLImageElement.x`属性返回图像左上角相对于页面左上角的横坐标，`HTMLImageElement.y`属性返回纵坐标。
