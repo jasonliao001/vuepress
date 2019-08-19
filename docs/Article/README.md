@@ -12,6 +12,8 @@
 
 5. [如何处理 JavaScript 内存泄露](https://mp.weixin.qq.com/s/Cup4F6TMyyw4jB87yrtkRQ)
 
+6. [认识 babel](https://juejin.im/post/5d0373a95188251e1b5ebb6c#heading-3)
+
 ## Html & Css
 
 [干货!各种常见布局实现+知名网站实例分析](https://juejin.im/post/5aa252ac518825558001d5de)
