@@ -14,6 +14,8 @@
 
 6. [认识 babel](https://juejin.im/post/5d0373a95188251e1b5ebb6c#heading-3)
 
+7. [深入浏览器事件循环的本质](https://github.com/frontend9/fe9-library/issues/160)
+
 ## Html & Css
 
 [干货!各种常见布局实现+知名网站实例分析](https://juejin.im/post/5aa252ac518825558001d5de)
@@ -47,6 +49,8 @@
 [Vue 的 6 种通信方式](https://mp.weixin.qq.com/s/XZ3BmZLY4OwwGm2Hbbepbg)
 
 [来用 TypeScript](https://juejin.im/post/5ca4417d6fb9a05e5a2e41f8)
+
+[react-router v4 使用 history 控制路由跳转](https://github.com/brickspert/blog/issues/3)
 
 ## 运行环境
 

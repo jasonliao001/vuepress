@@ -69,6 +69,10 @@
 
 18. [在线 restfulApi](http://jsonplaceholder.typicode.com/)
 
+19. [常用 css 特效](https://cssfx.dev/)
+
+20. [网页设计尺寸规范](http://www.tuyiyi.com/cc/)
+
 ## Learning website
 
 1. [Learn Git Branching](https://learngitbranching.js.org/)

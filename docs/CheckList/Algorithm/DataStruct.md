@@ -409,3 +409,264 @@ class HashTable {
 树的深度（Depth）：树中所有节点中的最大层次是这棵树的深度（因为上面是从第0层开始，深度 = 第最大层数 + 1）
 
 **二叉树的定义：**
+
+- 二叉树可以为空，也就是没有节点
+- 二叉树若不为空，则它是由根节点和称为其左子树`TL`和右子树`RT`的两个不相交的二叉树组成
+- 二叉树每个节点的子节点不允许超过`两个`
+
+**二叉树的五种形态：**
+
+- 空
+- 只有根节点
+- 只有左子树
+- 只有右子树
+- 左右子树均有
+
+**二叉查找树（BST，Binary Search Tree）**
+
+```javascript
+// 二叉查找树
+// 辅助节点类
+class Node {
+    constructor(data, left, right){
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+    // 展示节点信息
+    show(){
+        return this.data;
+    }
+}
+class BST {
+    constructor(){
+        this.root = null;
+    }
+    // 插入数据
+    insert(data){
+        let n = new Node(data, null, null);
+        if(this.root == null){
+            this.root = n;
+        }else{
+            let current = this.root,
+                parent = null;
+            while(true){
+                parent = current;
+                if(data < current.data){
+                    current = current.left;
+                    if(current == null){
+                        parent.left = n;
+                        break;
+                    }
+                }else{
+                    current = current.right;
+                    if(current == null){
+                        parent.right = n;
+                        break;
+                    }
+                }
+            }
+        }
+        return this;
+    }
+    // 中序遍历
+    inOrder(node){
+        if(!(node == null)){
+            this.inOrder(node.left);
+            console.log(node.show());
+            this.inOrder(node.right);
+        }
+    }
+    //   先序遍历
+    preOrder(node){
+        if(!(node == null)){
+            console.log(node.show());
+            this.preOrder(node.left);
+            this.preOrder(node.right);
+        }
+    }
+    // 后序遍历
+    postOrder(node){
+        if(!(node == null)){
+            this.postOrder(node.left);
+            this.postOrder(node.right);
+            console.log(node.show());
+        }
+    }
+    // 获取最小值
+    getMin(){
+        let current = this.root;
+        while(!(current.left == null)){
+            current = current.left;
+        }
+        return current.data;
+    }
+    // 获取最大值
+    getMax(){
+        let current = this.root;
+        while(!(current.right == null)){
+            current = current.right;
+        }
+        return current.data;
+    }
+    // 查找给定的值
+    find(data){
+        let current = this.root;
+        while(current != null){
+            if(current.data == data){
+                return current;
+            }else if(data < current.data){
+                current = current.left;
+            }else{
+                current = current.right;
+            }
+        }
+        return null;
+    }
+    // 移除给定的值
+    remove(data){
+        root = this.removeNode(this.root, data);
+        return this;
+    }
+    // 移除给定值的辅助函数
+    removeNode(node, data){
+        if(node == null){
+            return null;
+        }
+        if(data == node.data){
+            // 叶子节点
+            if(node.left == null && node.right == null){
+                return null; // 此节点置空
+            }
+            // 没有左子树
+            if(node.left == null){
+                return node.right;
+            }
+            // 没有右子树
+            if(node.right == null){
+                return node.left;
+            }
+            // 有两个子节点的情况
+            let tempNode = this.getSmallest(node.right); // 获取右子树
+            node.data = tempNode.data; // 将其右子树的最小值赋值给删除的那个节点值
+            node.right = this.removeNode(node.right, tempNode.data); // 删除指定节点的下的最小值，也就是置其为空
+            return node;
+        }else if(data < node.data){
+            node.left = this.removeNode(node.left, data);
+            return node;
+        }else{
+            node.right = this.removeNode(node.right, data);
+            return node;
+        }
+    }
+    // 获取给定节点下的二叉树最小值的辅助函数
+    getSmallest(node){
+        if(node.left == null){
+            return node;
+        }else{
+            return this.getSmallest(node.left);
+        }
+    }
+}
+```
+
+### 图
+
+**图的相关术语**
+
+- 
+
+- 顶点：图中的一个节点。
+
+- 边：表示顶点和顶点之间的连线。
+
+- 相邻顶点：由一条边连接在一起的顶点称为相邻顶点。
+
+- 度：一个顶点的度是相邻顶点的数量。比如`0`顶点和其它两个顶点相连，`0`顶点的度就是`2`
+
+- 路径：路径是顶点的一个连续序列。
+
+- 简单路径：简单路径要求不包含重复的顶点。
+
+- 回路：第一个顶点和最后一个顶点相同的路径称为回路。
+
+- 有向图和无向图
+
+- 有向图表示图中的`边`是`有`方向的。
+
+- 无向图表示图中的`边`是`无`方向的。
+
+- 带权图和无权图
+
+- 带权图表示图中的边`有权重`。
+
+- 无权图表示图中的边`无权重`。
+
+  ```javascript
+  // 图
+  class Graph{
+      constructor(v){
+          this.vertices = v; // 顶点个数
+          this.edges = 0; // 边的个数
+          this.adj = []; // 邻接表或邻接表数组
+          this.marked = []; // 存储顶点是否被访问过的标识
+          this.init();
+      }
+      init(){
+          for(let i = 0; i < this.vertices; i++){
+              this.adj[i] = [];
+              this.marked[i] = false;
+          }
+      }
+      // 添加边
+      addEdge(v, w){
+          this.adj[v].push(w);
+          this.adj[w].push(v);
+          this.edges++;
+          return this;
+      }
+      // 展示图
+      showGraph(){
+          for(let i = 0; i < this.vertices; i++){
+              for(let j = 0; j < this.vertices; j++){
+                  if(this.adj[i][j] != undefined){
+                      console.log(i +' => ' + this.adj[i][j]);
+                  }
+              }
+          }
+      }
+      // 深度优先搜索
+      dfs(v){
+          this.marked[v] = true;
+          if(this.adj[v] != undefined){
+              console.log("visited vertex: " + v);
+          }
+          this.adj[v].forEach(w => {
+              if(!this.marked[w]){
+                  this.dfs(w);
+              }
+          })
+      }
+      // 广度优先搜索
+      bfs(v){
+          let queue = [];
+          this.marked[v] = true;
+          queue.push(v); // 添加到队尾
+          while(queue.length > 0){
+              let v = queue.shift(); // 从对首移除
+              if(v != undefined){
+                  console.log("visited vertex: " + v);
+              }
+              this.adj[v].forEach(w => {
+                  if(!this.marked[w]){
+                      this.marked[w] = true;
+                      queue.push(w);
+                  }
+              })
+          }
+      }
+  }
+  ```
+
+  
+
