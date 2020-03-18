@@ -10,5 +10,5 @@ features:
     details:
   - title:
     details:
-footer: MIT Licensed | Copyright © 2019-present bxLiao
+footer: MIT Licensed | Copyright © 2020-present bxLiao
 ---
