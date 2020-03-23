@@ -8,12 +8,13 @@ module.exports = {
       { text: "前端大全", link: "/CheckList/Javascript/grammar" },
       { text: "Node", link: "/Node/basic" },
       { text: "计算机知识", link: "/Computer/Linux" },
-      { text: "设计模式与算法", link: "/Algorithm/DataStruct" }
+      { text: "设计模式与算法", link: "/Algorithm/DataStruct" },
+      { text: "关于我", link: "/About" }
     ],
     sidebar: {
       "/CheckList/": [
         {
-          title: "基础",
+          title: "前端基础",
           children: [
             ["/CheckList/Javascript/grammar", "语法"],
             ["/CheckList/Javascript/object", "标准库"],
@@ -22,6 +23,19 @@ module.exports = {
             ["/CheckList/Browser/dom", "Dom"],
             ["/CheckList/Browser/event", "Event"],
             ["/CheckList/Browser/other", "其他"]
+          ]
+        },
+        {
+          title: "前端规范",
+          children: [["/CheckList/rule/ide", "IDE"]]
+        },
+        {
+          title: "前端工程化",
+          children: [
+            ["/CheckList/project/npm", "NPM"],
+            ["/CheckList/project/babel", "BABEL"],
+            ["/CheckList/project/build", "BUILD"],
+            ["/CheckList/project/cli", "CLI"]
           ]
         }
       ],
