@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>前端路由前世今生 | bxliao</title>
+    <meta name="description" content="记录，分享，技术成长">
+    <meta name="generator" content="VuePress 1.3.1">
+    
+    
+    <link rel="preload" href="/vuepress/assets/css/0.styles.379a8785.css" as="style"><link rel="preload" href="/vuepress/assets/js/app.0ad50b13.js" as="script"><link rel="preload" href="/vuepress/assets/js/2.7cf59c07.js" as="script"><link rel="preload" href="/vuepress/assets/js/20.abe09e2f.js" as="script"><link rel="prefetch" href="/vuepress/assets/js/10.7051dd6d.js"><link rel="prefetch" href="/vuepress/assets/js/11.b78552fe.js"><link rel="prefetch" href="/vuepress/assets/js/12.a3f37b4e.js"><link rel="prefetch" href="/vuepress/assets/js/13.48c60c84.js"><link rel="prefetch" href="/vuepress/assets/js/14.9e1e07a4.js"><link rel="prefetch" href="/vuepress/assets/js/15.f6563af8.js"><link rel="prefetch" href="/vuepress/assets/js/16.885f059c.js"><link rel="prefetch" href="/vuepress/assets/js/17.87c57e56.js"><link rel="prefetch" href="/vuepress/assets/js/18.e66fe3ad.js"><link rel="prefetch" href="/vuepress/assets/js/19.2b4db5f2.js"><link rel="prefetch" href="/vuepress/assets/js/21.3b91fe73.js"><link rel="prefetch" href="/vuepress/assets/js/22.af4af1a8.js"><link rel="prefetch" href="/vuepress/assets/js/23.1fcfe0b9.js"><link rel="prefetch" href="/vuepress/assets/js/24.d7c1f4a8.js"><link rel="prefetch" href="/vuepress/assets/js/25.5121739d.js"><link rel="prefetch" href="/vuepress/assets/js/26.2818839b.js"><link rel="prefetch" href="/vuepress/assets/js/27.038138bf.js"><link rel="prefetch" href="/vuepress/assets/js/28.e093f550.js"><link rel="prefetch" href="/vuepress/assets/js/29.a161cf3a.js"><link rel="prefetch" href="/vuepress/assets/js/3.18ebda36.js"><link rel="prefetch" href="/vuepress/assets/js/30.98045800.js"><link rel="prefetch" href="/vuepress/assets/js/31.0bea32d9.js"><link rel="prefetch" href="/vuepress/assets/js/32.9a1237d0.js"><link rel="prefetch" href="/vuepress/assets/js/33.ddac3cbe.js"><link rel="prefetch" href="/vuepress/assets/js/34.1a746ae0.js"><link rel="prefetch" href="/vuepress/assets/js/35.6a085065.js"><link rel="prefetch" href="/vuepress/assets/js/36.b095d317.js"><link rel="prefetch" href="/vuepress/assets/js/37.e495042e.js"><link rel="prefetch" href="/vuepress/assets/js/38.741b638e.js"><link rel="prefetch" href="/vuepress/assets/js/39.f5a3030f.js"><link rel="prefetch" href="/vuepress/assets/js/4.bd5ca72f.js"><link rel="prefetch" href="/vuepress/assets/js/40.3d6f9139.js"><link rel="prefetch" href="/vuepress/assets/js/41.df7b5653.js"><link rel="prefetch" href="/vuepress/assets/js/42.27050bb2.js"><link rel="prefetch" href="/vuepress/assets/js/43.b57cfb1a.js"><link rel="prefetch" href="/vuepress/assets/js/44.c3831e0d.js"><link rel="prefetch" href="/vuepress/assets/js/45.2584058d.js"><link rel="prefetch" href="/vuepress/assets/js/46.e3f413fd.js"><link rel="prefetch" href="/vuepress/assets/js/47.80a9ca21.js"><link rel="prefetch" href="/vuepress/assets/js/48.62d46beb.js"><link rel="prefetch" href="/vuepress/assets/js/49.11254305.js"><link rel="prefetch" href="/vuepress/assets/js/5.22c734f0.js"><link rel="prefetch" href="/vuepress/assets/js/50.f4596a9b.js"><link rel="prefetch" href="/vuepress/assets/js/51.f1332ae8.js"><link rel="prefetch" href="/vuepress/assets/js/52.a9c597c8.js"><link rel="prefetch" href="/vuepress/assets/js/53.46cf4878.js"><link rel="prefetch" href="/vuepress/assets/js/54.5fb2dd96.js"><link rel="prefetch" href="/vuepress/assets/js/55.3f528df2.js"><link rel="prefetch" href="/vuepress/assets/js/56.5b4f961b.js"><link rel="prefetch" href="/vuepress/assets/js/57.a9ff1efc.js"><link rel="prefetch" href="/vuepress/assets/js/58.6233a362.js"><link rel="prefetch" href="/vuepress/assets/js/59.72925434.js"><link rel="prefetch" href="/vuepress/assets/js/6.a7451eec.js"><link rel="prefetch" href="/vuepress/assets/js/60.60f12184.js"><link rel="prefetch" href="/vuepress/assets/js/61.b887e966.js"><link rel="prefetch" href="/vuepress/assets/js/62.70d1255f.js"><link rel="prefetch" href="/vuepress/assets/js/7.e2975a0c.js"><link rel="prefetch" href="/vuepress/assets/js/8.69ee3e3f.js"><link rel="prefetch" href="/vuepress/assets/js/9.1c6ab7d2.js">
+    <link rel="stylesheet" href="/vuepress/assets/css/0.styles.379a8785.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vuepress/" class="home-link router-link-active"><!----> <span class="site-name">bxliao</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vuepress/SiteNav/recommend.html" class="nav-link">
+  网址导航
+</a></div><div class="nav-item"><a href="/vuepress/CheckList/Javascript/grammar.html" class="nav-link">
+  前端大全
+</a></div><div class="nav-item"><a href="/vuepress/Node/basic.html" class="nav-link">
+  Node
+</a></div><div class="nav-item"><a href="/vuepress/Computer/Linux.html" class="nav-link">
+  计算机知识
+</a></div><div class="nav-item"><a href="/vuepress/Algorithm/DataStruct.html" class="nav-link">
+  设计模式与算法
+</a></div><div class="nav-item"><a href="/vuepress/About.html" class="nav-link">
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vuepress/SiteNav/recommend.html" class="nav-link">
+  网址导航
+</a></div><div class="nav-item"><a href="/vuepress/CheckList/Javascript/grammar.html" class="nav-link">
+  前端大全
+</a></div><div class="nav-item"><a href="/vuepress/Node/basic.html" class="nav-link">
+  Node
+</a></div><div class="nav-item"><a href="/vuepress/Computer/Linux.html" class="nav-link">
+  计算机知识
+</a></div><div class="nav-item"><a href="/vuepress/Algorithm/DataStruct.html" class="nav-link">
+  设计模式与算法
+</a></div><div class="nav-item"><a href="/vuepress/About.html" class="nav-link">
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>Javascript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>Browser</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuepress/CheckList/Browser/chrome.html" class="sidebar-link">Chrome发展历程</a></li><li><a href="/vuepress/CheckList/Browser/router.html" class="active sidebar-link">路由变迁</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/vuepress/CheckList/Browser/chrome01.html" class="sidebar-link">数据交流</a></li><li><a href="/vuepress/CheckList/Browser/chrome02.html" class="sidebar-link">渲染流程</a></li><li><a href="/vuepress/CheckList/Browser/chrome03.html" class="sidebar-link">V8 工作原理</a></li><li><a href="/vuepress/CheckList/Browser/chrome04.html" class="sidebar-link">Javascript 执行机制</a></li><li><a href="/vuepress/CheckList/Browser/chrome05.html" class="sidebar-link">页面循环系统</a></li><li><a href="/vuepress/CheckList/Browser/ajax.html" class="sidebar-link">网络请求</a></li><li><a href="/vuepress/CheckList/Browser/window.html" class="sidebar-link">Window</a></li><li><a href="/vuepress/CheckList/Browser/dom.html" class="sidebar-link">Dom</a></li><li><a href="/vuepress/CheckList/Browser/event.html" class="sidebar-link">Event</a></li><li><a href="/vuepress/CheckList/Browser/other.html" class="sidebar-link">其他</a></li></ul></section></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端规范</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端框架</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="前端路由前世今生"><a href="#前端路由前世今生" class="header-anchor">#</a> 前端路由前世今生</h3> <blockquote><p><strong>路由</strong>（<strong>routing</strong>）就是通过互联的<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%AF%E7%B6%B2" target="_blank" rel="noopener noreferrer">网络<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>把<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF" target="_blank" rel="noopener noreferrer">信息<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>从源地址传输到目的地址的活动。路由发生在<a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B" target="_blank" rel="noopener noreferrer">OSI网络参考模型中<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>的第三层即<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%B1%82" target="_blank" rel="noopener noreferrer">网络层<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</p></blockquote> <p>路由匹配到相应的 URL，然后由对应的函数决定返回这个 URL 什么资源，可以是一个 .html 文件，一个图片等等。</p> <h4 id="后端路由与服务端渲染"><a href="#后端路由与服务端渲染" class="header-anchor">#</a> 后端路由与服务端渲染</h4> <p>众所周知，在 web 的远古时代，网页通常是通过后端路由直出给客户端浏览器的。也就是网页的 HTML 一般是在后端服务器里通过模板引擎渲染好再交给前端的。至于一些其他的效果，是预先写在页面里的 jQuery、Bootstrap 等常见的前端框架去负责的。</p> <p>在 web 后端，不管是什么语言的后端框架，都会有一个专门开辟出来的路由模块或者路由区域，用来匹配用户给出的URL地址，以及一些表单提交、ajax请求的地址。通常遇到无法匹配的路由，后端将会返回一个404状态码。这也是我们常说的404（Not Found）的由来。</p> <p>用户通过URL访问到的页面，多数都是由后端进行<strong>路由匹配</strong>之后返回的是一个‘完备的’<strong>静态</strong>的页面。</p> <p>服务端渲染( SSR )的好处有很多，比如对于 SEO 友好（因为他所有的数据内容，都已经在文件里面，不需要进一步生成），对安全性要求高的页面采用服务端渲染是更保险的，因为前端不做任何请求操作，只是展示服务端返回的文件。而在当时还没有 node.js 的年代，为了良好地构建前端页面，都是通过服务端语言对应的模板引擎来实现动态网页、页面结构的组织、组件的复用。实际上到如今，一门后端语言想要能实现自己的 web 功能，都需要有自己对应的模板引擎</p> <h4 id="前端路由与前端渲染"><a href="#前端路由与前端渲染" class="header-anchor">#</a> 前端路由与前端渲染</h4> <p>前端渲染把渲染的任务交给了浏览器，通过客户端的算力来解决页面的构建，这个很大程度上缓解了服务端的压力。而且配合<strong>前端路由</strong>，无缝的<strong>页面切换体验</strong>自然是对用户友好的。前端路由进行切换是不会引起浏览器刷新的，也就是说，不会去对服务器端发起请求。</p> <p>随着 ajax 的流行，异步数据请求交互运行在不刷新浏览器的情况下进行。而异步交互体验的更高级版本就是 SPA —— 单页应用。单页应用不仅仅是在页面交互是无刷新的，连页面跳转都是无刷新的，为了实现单页应用，所以就有了前端路由。</p> <h4 id="hash模式"><a href="#hash模式" class="header-anchor">#</a> Hash模式</h4> <ul><li><p>url 中 hash 值的变化并不会重新加载页面，因为 hash 是用来指导浏览器行为的，对服务端是无用的，所以不会包括在 http 请求中。</p></li> <li><p>hash 值的改变，都会在浏览器的访问历史中增加一个记录，也就是能通过浏览器的回退、前进按钮控制 hash 的切换</p></li> <li><p>我们可以通过 hashchange 事件，监听到 hash 值的变化，从而响应不同路径的逻辑处理。</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>window.addEventListener(&quot;hashchange&quot;, funcRef, false)
+</code></pre></div><p>我们可以在 hashchange 函数里面进行相应的页面更新，但不会去重新请求页面，同时呢，也在 history 里增加了一条访问记录，用户也仍然可以通过前进后退键实现 UI 的切换。这样，不管是我们在浏览器的地址栏输入，或者是页面里通过 router 的 api 进行的跳转，都是一样的跳转逻辑。所以这个模式是不需要后端配置其他逻辑的，只要给前端返回 https://www.yuque.com 对应的 html，剩下具体是哪个页面，就由前端路由去解析路由配置，并加载相应页面。</p> <h4 id="history模式"><a href="#history模式" class="header-anchor">#</a> History模式</h4> <p>HTML5 提出了 history 的API。</p> <p>相同之处是两个 API 都会操作浏览器的历史记录，而<strong>不会引起页面的刷新</strong>。</p> <p>不同之处在于，pushState 会增加一条新的历史记录，而 replaceState 则会替换当前的历史记录。</p> <div class="language- extra-class"><pre class="language-text"><code>history.pushState(stateObject, title, url)
+history.replaceState(stateObject, title, url)
+</code></pre></div><p>此时，就会出现一个问题，由于浏览器的路由跳转是交给前端路由控制了，所以后端将不处理404的错误界面，因为服务端会对所有路径都返回那一个HTML模板文件。</p> <div class="language-nginx extra-class"><pre class="language-nginx"><code><span class="token keyword">location</span> <span class="token operator">/</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try_files</span> <span class="token variable">$uri</span> <span class="token variable">$uri</span><span class="token operator">/</span> <span class="token operator">/</span><span class="token keyword">index</span><span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这种方式无法返回404的页面的，前端可以定义在路由404情况下返回特定的页面：</p> <div class="language-vue extra-class"><pre class="language-vue"><code>const router = new VueRouter({
+    mode: 'history',
+    routes: [{
+        path: '*', component: NotFoundPage
+    }]
+});
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>// https://blog.csdn.net/weixin_37861326/article/details/82383465
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+// 404
+import Errorinfo from '@/components/error404'
+ 
+const router = new Router({
+  routes: [
+    // 404page
+    {
+      path: '/errorinfo',
+      name: 'Errorinfo',
+      component: Errorinfo
+    }
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  },
+  history: true
+})
+router.beforeEach((to, from, next) =&gt; {
+  if (to.matched.length === 0) { 
+    from.name ? next({
+      name: from.name
+    }) : next('/errorinfo'); 
+  } else {
+    next(); //如果匹配到正确跳转
+  }
+});
+export default router;
+</code></pre></div><p><strong>Reference：</strong></p> <p><a href="https://github.com/chiwent/blog/issues/12" target="_blank" rel="noopener noreferrer">谈谈前端路由<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://www.yuque.com/fekl/fe/dbeyky" target="_blank" rel="noopener noreferrer">Router的前世今生<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vuepress/CheckList/Browser/chrome.html" class="prev">
+        Chrome发展历程
+      </a></span> <span class="next"><a href="/vuepress/CheckList/Browser/chrome01.html">
+        数据交流
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vuepress/assets/js/app.0ad50b13.js" defer></script><script src="/vuepress/assets/js/2.7cf59c07.js" defer></script><script src="/vuepress/assets/js/20.abe09e2f.js" defer></script>
+  </body>
+</html>
